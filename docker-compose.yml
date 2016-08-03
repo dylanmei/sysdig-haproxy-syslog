@@ -1,0 +1,16 @@
+version: "2"
+services:
+  haproxy:
+    build: docker-files/
+    ports:
+      - 8080:80
+      - 9090:3000
+    volumes:
+      - ./haproxy.cfg:/etc/haproxy/haproxy.cfg:ro
+
+  webapp:
+    image: training/webapp
+    logging:
+      driver: none
+    expose:
+      - 5000
